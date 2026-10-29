@@ -32,7 +32,7 @@ export function Services() {
               display="flex"
               flexDirection="column"
               transition="transform 0.25s ease, box-shadow 0.25s ease"
-              _hover={{ transform: "translateY(-4px)", boxShadow: "inset 0 0 0 1px rgb(167 139 250 / 0.45), inset 0 1px 0 rgb(255 255 255 / 0.08)" }}
+              _hover={{ transform: "translateY(-4px)", boxShadow: "inset 0 0 0 1px rgb(251 146 60 / 0.5), inset 0 1px 0 rgb(255 255 255 / 0.08)" }}
             >
               <Box as="span" display="grid" placeItems="center" w="48px" h="48px" borderRadius="12px" bg="accentTint" color="accent" border="1px solid" borderColor="accentLine">
                 <Icon name={s.icon} size={24} />

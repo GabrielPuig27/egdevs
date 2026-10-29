@@ -8,7 +8,7 @@ import { gutter } from "@/theme/layout";
 
 export const metadata: Metadata = {
   title: "Projetos",
-  description: "Sites, lojas virtuais e landing pages desenvolvidos pelos fundadores da EGdevs, com a participação em cada projeto indicada.",
+  description: "Sites publicados e protótipos demonstrativos da EGdevs, com a participação em cada projeto indicada.",
   alternates: { canonical: "/projetos" },
 };
 
@@ -23,7 +23,7 @@ export default function ProjetosPage() {
               Todos os projetos
             </Heading>
             <Text textStyle="body" color="muted" mt={5} maxW="62ch">
-              Trabalhos do portfólio de Gabriel Puig, um dos fundadores da EGdevs. Em cada projeto, indicamos qual foi a participação.
+              Sites publicados do portfólio de Gabriel Puig, um dos fundadores, e protótipos demonstrativos da EGdevs. Em cada projeto, indicamos qual foi a participação.
             </Text>
           </Box>
           <Grid as="ul" listStyleType="none" m={0} mt={{ base: 10, md: 14 }} p={0} templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={{ base: 4, md: 5 }}>

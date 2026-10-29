@@ -1,8 +1,10 @@
 import type { Project, Screenshot } from "@/types/project";
 
-// Fonte única dos projetos. São trabalhos do portfólio de Gabriel Puig, um dos fundadores da EGdevs;
-// `participation` descreve a participação real em cada um (nunca autoria integral onde foi parcial).
-// Imagens: capturas autorizadas, otimizadas em public/images/projects/<slug>/. Só há URL onde o site existe.
+// Fonte única dos projetos: sites publicados do portfólio de Gabriel Puig (um dos fundadores) e protótipos
+// demonstrativos da EGdevs. `participation` descreve a participação real (nunca autoria integral onde foi
+// parcial; protótipos aparecem como "Protótipo demonstrativo").
+// Imagens: capturas otimizadas em public/images/projects/<slug>/. Só há URL onde o site existe online:
+// os protótipos ainda rodam apenas localmente, então não têm link.
 
 const shot = (slug: string, file: string, alt: string): Screenshot => ({
   src: `/images/projects/${slug}/${file}.webp`,
@@ -12,6 +14,24 @@ const shot = (slug: string, file: string, alt: string): Screenshot => ({
 });
 
 export const projects: readonly Project[] = [
+  {
+    slug: "recicle-auto-pecas",
+    title: "Recicle Auto Peças",
+    category: "Catálogo e atendimento com IA",
+    participation: "Protótipo demonstrativo",
+    summary: "Protótipo de site para uma loja de autopeças: busca por veículo, catálogo de peças e atendimento com IA. Peças, preços e anúncios são fictícios.",
+    image: shot("recicle-auto-pecas", "desktop-home-hero", "Protótipo da Recicle Auto Peças em desktop: página inicial com busca de peças por veículo."),
+    featured: true,
+  },
+  {
+    slug: "flor-e-cor",
+    title: "Flor & Cor",
+    category: "Catálogo para floricultura",
+    participation: "Protótipo demonstrativo",
+    summary: "Protótipo de site para uma floricultura, com catálogo por ocasião e pedido por WhatsApp. Nomes, preços e telefones são fictícios.",
+    image: shot("flor-e-cor", "desktop-home-hero", "Protótipo da floricultura Flor & Cor em desktop: página inicial com buquê de rosas."),
+    featured: true,
+  },
   {
     slug: "espaco-varandas",
     title: "Espaço Varandas",
@@ -30,7 +50,6 @@ export const projects: readonly Project[] = [
     summary: "Manutenção e evolução de uma loja virtual WooCommerce, com integração de pagamentos.",
     image: shot("black-metal-store", "desktop-home-hero", "Página inicial da loja Black Metal Store em desktop."),
     url: "https://blackmetalstore.com",
-    featured: true,
   },
   {
     slug: "phonoise",
@@ -40,7 +59,6 @@ export const projects: readonly Project[] = [
     summary: "Landing page para uma gravadora de Heavy Metal de São Paulo, com hero, catálogo de lançamentos, atacado e contato.",
     image: shot("phonoise", "desktop-home-hero", "Página inicial da landing page Phonoise em desktop."),
     url: "https://phonoise.vercel.app/",
-    featured: true,
   },
   {
     slug: "reymond-solucoes",

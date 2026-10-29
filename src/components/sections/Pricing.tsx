@@ -41,7 +41,7 @@ function Price({ money, unit, size = "lg" }: { money: Money; unit: string; size?
           {prefix}
         </Text>
       )}
-      <Text as="p" fontSize={size === "lg" ? { base: "1.75rem", md: "2rem" } : "1.5rem"} fontWeight={800} letterSpacing="-0.02em" lineHeight={1.1}>
+      <Text as="p" fontSize={size === "lg" ? { base: "1.75rem", md: "2rem", xl: "1.6rem" } : "1.5rem"} whiteSpace="nowrap" fontWeight={800} letterSpacing="-0.02em" lineHeight={1.1}>
         {value}
       </Text>
       <Text textStyle="small" color="muted" mt={1}>
@@ -56,7 +56,7 @@ function Includes({ items }: { items: readonly string[] }) {
     <Box as="ul" listStyleType="none" m={0} p={0} display="grid" gap={2}>
       {items.map((item) => (
         <Flex as="li" key={item} gap={2} align="flex-start" textStyle="small" fontSize="md" color="ink">
-          <Box as="span" color="sky" mt="3px" display="inline-flex">
+          <Box as="span" color="accent" mt="3px" display="inline-flex">
             <Icon name="check" size={16} />
           </Box>
           {item}
@@ -77,7 +77,25 @@ function OfferCard({ offer, unit }: { offer: Offer; unit: string }) {
           {offer.description}
         </Text>
       </Box>
-      <Price money={offer.price} unit={unit} />
+      {offer.tiers ? (
+        <Box display="grid" gap={3}>
+          {offer.tiers.map((t) => (
+            <Box key={t.label}>
+              <Text textStyle="small" color="muted">
+                {t.label}
+              </Text>
+              <Text as="p" fontSize="1.5rem" fontWeight={800} letterSpacing="-0.02em" lineHeight={1.15}>
+                {formatMoney(t.price)}
+                <Text as="span" textStyle="small" color="muted" fontWeight={500} letterSpacing="0" ml={2}>
+                  {unit}
+                </Text>
+              </Text>
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        <Price money={offer.price} unit={unit} />
+      )}
       <Box flex="1" display="grid" gap={4} alignContent="start">
         <Includes items={offer.includes} />
         {offer.notes?.map((n) => (
@@ -89,7 +107,7 @@ function OfferCard({ offer, unit }: { offer: Offer; unit: string }) {
       <ActionLink
         href="#contato"
         w="100%"
-        onClick={() => announceInterest({ service: offer.serviceId, message: `Tenho interesse em: ${offer.name} (${formatMoney(offer.price)}, ${unit.toLowerCase()}).` })}
+        onClick={() => announceInterest({ service: offer.serviceId, message: `Tenho interesse em: ${offer.name}${offer.tiers ? "" : ` (${formatMoney(offer.price)}, ${unit.toLowerCase()})`}.` })}
       >
         Tenho interesse
         <Icon name="arrow" size={16} />
@@ -109,8 +127,8 @@ function BundleCard({ bundle }: { bundle: Bundle }) {
       borderRadius="bar"
       position="relative"
       bg="surface"
-      bgImage={highlight ? "linear-gradient(180deg, rgb(124 58 237 / 0.18) 0%, rgb(59 130 246 / 0.06) 100%)" : "linear-gradient(180deg, rgb(148 163 184 / 0.07) 0%, rgb(148 163 184 / 0.02) 100%)"}
-      boxShadow={highlight ? "inset 0 0 0 1px rgb(167 139 250 / 0.7), 0 0 50px -12px rgb(124 58 237 / 0.45)" : "inset 0 0 0 1px rgb(148 163 184 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.06)"}
+      bgImage={highlight ? "linear-gradient(180deg, rgb(249 115 22 / 0.16) 0%, rgb(245 158 11 / 0.05) 100%)" : "linear-gradient(180deg, rgb(148 163 184 / 0.07) 0%, rgb(148 163 184 / 0.02) 100%)"}
+      boxShadow={highlight ? "inset 0 0 0 1px rgb(251 146 60 / 0.7), 0 0 50px -12px rgb(249 115 22 / 0.4)" : "inset 0 0 0 1px rgb(148 163 184 / 0.14), inset 0 1px 0 rgb(255 255 255 / 0.06)"}
     >
       {highlight && (
         <Text
@@ -121,7 +139,7 @@ function BundleCard({ bundle }: { bundle: Bundle }) {
           borderRadius="full"
           textStyle="small"
           fontWeight={700}
-          color="white"
+          color="onBrand"
           bgGradient="linear(135deg, brandFrom, brandTo)"
         >
           Mais completo
@@ -239,11 +257,11 @@ export function Pricing() {
                   borderRadius="8px"
                   textStyle="small"
                   fontWeight={700}
-                  color={selected ? "white" : "muted"}
+                  color={selected ? "onBrand" : "muted"}
                   bgGradient={selected ? "linear(135deg, brandFrom, brandTo)" : undefined}
                   cursor="pointer"
                   transition="color 0.2s ease, background-color 0.2s ease"
-                  _hover={{ color: selected ? "white" : "ink" }}
+                  _hover={{ color: selected ? "onBrand" : "ink" }}
                 >
                   {t.label}
                 </Box>
@@ -260,7 +278,7 @@ export function Pricing() {
         <Text textStyle="small" fontSize="md" color="muted" mt={1}>
           {panel.text}
         </Text>
-        <Grid as="ul" listStyleType="none" m={0} mt={6} p={0} templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)" }} gap={{ base: 4, md: 5 }}>
+        <Grid as="ul" listStyleType="none" m={0} mt={6} p={0} templateColumns={{ base: "1fr", md: "repeat(2, 1fr)", lg: "repeat(3, 1fr)", xl: `repeat(${panel.offers.length % 4 === 0 ? 4 : 3}, 1fr)` }} gap={{ base: 4, md: 5 }}>
           {panel.offers.map((offer) => (
             <li key={offer.id}>
               <OfferCard offer={offer} unit={panel.unit} />
@@ -286,7 +304,7 @@ export function Pricing() {
           ))}
         </Grid>
         <Text textStyle="small" color="muted" mt={8} maxW="80ch">
-          {pricingDisclaimer} Integrações adicionais e a verba de anúncios (quando houver tráfego pago) devem ser avaliadas e combinadas antes da contratação.
+          {pricingDisclaimer} Integrações adicionais, a verba de anúncios (quando houver tráfego pago), os custos de mensagens e de IA, o domínio e a hospedagem devem ser avaliados e combinados antes da contratação.
         </Text>
       </Box>
     </Box>

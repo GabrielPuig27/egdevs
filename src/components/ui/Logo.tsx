@@ -1,9 +1,10 @@
 import { Box, Flex, Text, type BoxProps } from "@chakra-ui/react";
 import { useId } from "react";
+import { brand } from "@/theme/brand";
 
 /**
  * Símbolo EG: um E e um G angulares, inclinados juntos (-10°). O E leva o degradê da marca
- * (violeta → azul → azul-claro) e o G é claro. `tone="light"` escurece o G para fundos claros.
+ * (laranja → âmbar) e o G é claro. `tone="light"` escurece o G para fundos claros.
  * Mesma geometria dos arquivos em `public/brand/` e de `src/app/icon.svg`.
  */
 export const logoGeometry = {
@@ -28,9 +29,9 @@ export function LogoMark({ size = 36, tone = "dark", ...rest }: { size?: number;
     >
       <defs>
         <linearGradient id={`${id}-e`} gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="26" y2="53">
-          <stop offset="0" stopColor="#7C3AED" />
-          <stop offset="0.6" stopColor="#3B82F6" />
-          <stop offset="1" stopColor="#0EA5E9" />
+          {brand.logoStops.map((s) => (
+            <stop key={s.offset} offset={s.offset} stopColor={s.color} />
+          ))}
         </linearGradient>
       </defs>
       <g transform="translate(9.3 0) skewX(-10)">

@@ -5,7 +5,7 @@ import { Link, type LinkProps } from "@chakra-ui/react";
 export type ActionVariant = "primary" | "outline" | "ghost";
 
 interface ActionLinkProps extends LinkProps {
-  /** primary: ação principal (degradê da marca). outline: ação secundária (contorno violeta). ghost: ação neutra. */
+  /** primary: ação principal (degradê da marca). outline: ação secundária (contorno laranja). ghost: ação neutra. */
   variant?: ActionVariant;
   /** md: 52px (padrão). sm: 42px (cabeçalho, cartões). */
   size?: "md" | "sm";
@@ -14,7 +14,7 @@ interface ActionLinkProps extends LinkProps {
 const variants = {
   primary: {
     bgGradient: "linear(135deg, brandFrom, brandTo)",
-    color: "white",
+    color: "onBrand",
     border: "1px solid",
     borderColor: "transparent",
     _hover: { filter: "brightness(1.15)", transform: "translateY(-2px)" },

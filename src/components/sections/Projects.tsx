@@ -25,7 +25,7 @@ export function Projects() {
               Projetos que já saíram do papel.
             </Heading>
             <Text textStyle="body" color="muted" mt={5} maxW="62ch">
-              Trabalhos do portfólio de Gabriel Puig, um dos fundadores da EGdevs. Em cada projeto, indicamos qual foi a participação.
+              Sites publicados do portfólio de Gabriel Puig, um dos fundadores, e protótipos demonstrativos da EGdevs. Em cada projeto, indicamos qual foi a participação.
             </Text>
           </Box>
           <ActionLink as={NextLink} href="/projetos" variant="outline" flexShrink={0}>

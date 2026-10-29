@@ -15,7 +15,10 @@ export interface Offer {
   name: string;
   /** Uma frase sobre para quem serve. */
   description: string;
+  /** Preço principal; com `tiers`, é o da primeira faixa. */
   price: Money;
+  /** Faixas de preço (ex.: por verba de anúncios). Quando existem, o card mostra as faixas no lugar de `price`. */
+  tiers?: readonly { label: string; price: Money }[];
   includes: readonly string[];
   /** Ressalvas comerciais exibidas junto ao preço. */
   notes?: readonly string[];

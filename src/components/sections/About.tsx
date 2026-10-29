@@ -67,7 +67,7 @@ export function About() {
                   h="64px"
                   borderRadius="full"
                   bgGradient="linear(135deg, brandFrom, brandTo)"
-                  color="white"
+                  color="onBrand"
                   fontWeight={800}
                   fontSize="1.25rem"
                   flexShrink={0}

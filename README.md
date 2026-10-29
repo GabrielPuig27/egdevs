@@ -31,16 +31,17 @@ yarn start        # serve o build de produção
 | Integrantes e princípios (Sobre) | `src/content/team.ts` |
 | Cores, fontes e tokens | `src/theme/index.ts` |
 | Logo | `src/components/ui/Logo.tsx` e `public/brand/*.svg` |
+| Cores da marca (degradê, logo) | `src/theme/brand.ts` |
 
 Os preços são referências iniciais: o site os apresenta como tal. Altere só em `pricing.ts`; cards, pacotes e o formulário leem de lá.
 
 ## Pendências antes de publicar
 
 1. **Contato comercial:** preencher `src/config/contact.ts` (WhatsApp com DDI+DDD e e-mail). Enquanto estiver vazio, o formulário avisa que os canais estão em configuração, e os botões de contato não aparecem. A política de privacidade usa o mesmo e-mail.
-2. **Segundo integrante:** adicionar nome, cargo e links em `src/content/team.ts`.
+2. **Erick Bernardes:** confirmar cargo/título e links em `src/content/team.ts` (hoje aparece como "Desenvolvedor", sem links).
 3. **Domínio:** definir `NEXT_PUBLIC_SITE_URL` na hospedagem (sitemap, robots e Open Graph).
-4. **Demonstração de IA (`/agentes`):** precisa de `GOOGLE_GENERATIVE_AI_API_KEY` e `SESSION_SECRET` no servidor (ver `.env.example` e `docs/AGENTES_CUSTO_E_SEGURANCA.md`). A rota está como `noindex` e fora do sitemap até ser validada. Sem as chaves, o chat responde "serviço indisponível". A política de privacidade é um **rascunho** feito a partir do comportamento real: revise com um profissional antes de divulgar.
-5. **Projetos:** são trabalhos do portfólio de Gabriel Puig; cada card indica a participação real.
+4. **Demonstração de IA (`/agentes`):** validada e liberada (indexável e no sitemap). Precisa de `GOOGLE_GENERATIVE_AI_API_KEY` e `SESSION_SECRET` no servidor (ver `.env.example` e `docs/AGENTES_CUSTO_E_SEGURANCA.md`); sem as chaves, o chat responde "serviço indisponível". Antes de divulgar em massa, confira o custo/limites e o plano da hospedagem (ver o doc). A política de privacidade é um **rascunho** feito a partir do comportamento real: revise com um profissional.
+5. **Projetos:** sites publicados do portfólio de Gabriel Puig e protótipos demonstrativos (Recicle Auto Peças e Flor & Cor, ainda sem URL pública). Quando tiverem URL, adicione `url` em `src/content/projects.ts`.
 
 ## Como o contato funciona
 

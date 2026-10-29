@@ -6,7 +6,7 @@ export interface TeamMember {
 
 /**
  * Integrantes exibidos na seção "Sobre". Só entra quem tem dados confirmados.
- * PENDENTE: adicionar o segundo integrante (nome, cargo e links) quando os dados forem fornecidos.
+ * PENDENTE: cargo/título e links (GitHub, LinkedIn) de Erick Bernardes, quando forem informados.
  */
 export const team: readonly TeamMember[] = [
   {
@@ -14,6 +14,7 @@ export const team: readonly TeamMember[] = [
     role: "Desenvolvedor de Software",
     links: [{ label: "GitHub", href: "https://github.com/GabrielPuig27" }],
   },
+  { name: "Erick Bernardes", role: "Desenvolvedor", links: [] },
 ];
 
 export const aboutPrinciples = [

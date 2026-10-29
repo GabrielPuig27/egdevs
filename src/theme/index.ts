@@ -1,4 +1,5 @@
 import { extendTheme, type ThemeConfig } from "@chakra-ui/react";
+import { brand } from "./brand";
 
 const config: ThemeConfig = {
   initialColorMode: "dark",
@@ -6,9 +7,9 @@ const config: ThemeConfig = {
 };
 
 // ---- Iluminação ambiente ------------------------------------------------------------------
-// Halos suaves em violeta e azul atrás do conteúdo. Cada seção marca `data-glow="<nome>"`; a luz vive
+// Halos suaves em laranja e âmbar atrás do conteúdo. Cada seção marca `data-glow="<nome>"`; a luz vive
 // em ::before (atrás do conteúdo, sem cliques) e se dissolve nas bordas por máscara, sem emenda.
-const rgb = { violet: "124 58 237", blue: "59 130 246", sky: "14 165 233" } as const;
+const rgb = brand.glow;
 const orb = (w: number, h: number, x: number, y: number, tone: keyof typeof rgb, alpha: number) =>
   `radial-gradient(ellipse ${w}% ${h}% at ${x}% ${y}%, rgb(${rgb[tone]} / ${alpha}) 0%, rgb(${rgb[tone]} / ${+(alpha * 0.5).toFixed(3)}) 32%, rgb(${rgb[tone]} / ${+(alpha * 0.14).toFixed(3)}) 62%, rgb(${rgb[tone]} / 0) 100%)`;
 const lights = (...layers: string[]) => ({ background: layers.join(", ") });
@@ -17,10 +18,10 @@ const fadeEdges = "linear-gradient(180deg, transparent 0%, #000 22%, #000 78%, t
 const fadeBottom = "linear-gradient(180deg, #000 0%, #000 70%, transparent 100%)";
 
 /**
- * Único lugar de cores, fontes e tokens da EGdevs.
- * Cores base do mockup (#0B0F1A, #111827, #7C3AED, #3B82F6, #0EA5E9, #F5F7FA, #9CA3AF). Ajustes de contraste:
- * `accent` (#A78BFA) é o violeta claro para texto e ícones sobre fundo escuro (o #7C3AED puro dá ~3,6:1);
- * os botões usam o degradê `brandFrom`→`brandTo` (#6D28D9→#2563EB), com texto branco ≥ 5:1 nas duas pontas.
+ * Único lugar de cores, fontes e tokens da EGdevs (cores da marca em ./brand.ts).
+ * Base escura do mockup (#0B0F1A, #111827, #F5F7FA, #9CA3AF) com degradê laranja → âmbar.
+ * `accent` (#FB923C) é o laranja para texto e ícones sobre fundo escuro (≥ 7:1); o texto sobre o degradê é
+ * escuro (`onBrand`), pois o laranja/âmbar é claro demais para texto branco.
  */
 export const theme = extendTheme({
   config,
@@ -31,20 +32,18 @@ export const theme = extendTheme({
     surfaceRaised: "#1A2336",
     ink: "#F5F7FA",
     muted: "#9CA3AF",
-    accent: "#A78BFA",
-    accentHover: "#C4B5FD",
+    accent: "#FB923C",
+    accentHover: "#FDBA74",
     danger: "#FF8A80",
-    // Marca (decorativas, logo, degradês)
-    violet: "#7C3AED",
-    blue: "#3B82F6",
-    sky: "#0EA5E9",
-    brandFrom: "#6D28D9",
-    brandTo: "#2563EB",
-    // Bordas azul-acinzentadas: discreta (repouso), forte (hover) e violeta (ação secundária).
+    // Marca: degradê dos botões e destaques, e a cor do texto sobre ele.
+    brandFrom: brand.from,
+    brandTo: brand.to,
+    onBrand: brand.onBrand,
+    // Bordas azul-acinzentadas: discreta (repouso), forte (hover) e laranja (ação secundária).
     line: "rgba(148, 163, 184, 0.16)",
     lineStrong: "rgba(148, 163, 184, 0.34)",
-    accentLine: "rgba(167, 139, 250, 0.55)",
-    accentTint: "rgba(124, 58, 237, 0.16)",
+    accentLine: "rgba(251, 146, 60, 0.55)",
+    accentTint: "rgba(249, 115, 22, 0.14)",
   },
   // O Heading do Chakra traz um tamanho padrão ("xl") que vence o textStyle; sem tamanho, o textStyle manda.
   components: { Heading: { defaultProps: { size: "none" } } },
@@ -130,17 +129,17 @@ export const theme = extendTheme({
         WebkitMaskImage: fadeEdges,
       },
       '[data-glow="hero"]::before': {
-        ...lights(orb(60, 80, 78, 38, "violet", 0.3), orb(46, 60, 96, 76, "blue", 0.2), orb(40, 50, 4, 90, "sky", 0.1)),
+        ...lights(orb(60, 80, 78, 38, "primary", 0.3), orb(46, 60, 96, 76, "secondary", 0.2), orb(40, 50, 4, 90, "deep", 0.1)),
         maskImage: fadeBottom,
         WebkitMaskImage: fadeBottom,
       },
-      '[data-glow="a"]::before': lights(orb(56, 60, 92, 20, "violet", 0.16), orb(50, 50, 0, 80, "blue", 0.12)),
-      '[data-glow="b"]::before': lights(orb(56, 60, 6, 30, "blue", 0.15), orb(50, 56, 98, 85, "violet", 0.15)),
-      '[data-glow="c"]::before': lights(orb(64, 70, 50, 0, "violet", 0.18), orb(46, 50, 100, 100, "sky", 0.1)),
-      '[data-glow="agentes"]::before': lights(orb(62, 78, 90, 46, "violet", 0.2), orb(50, 58, 2, 88, "blue", 0.14)),
-      '[data-glow="agentes-home"]::before': lights(orb(60, 64, 8, 46, "violet", 0.17), orb(52, 56, 98, 90, "blue", 0.13)),
-      '[data-glow="privacidade"]::before': lights(orb(58, 70, 6, 24, "blue", 0.13), orb(52, 60, 96, 70, "violet", 0.12)),
-      "::selection": { bg: "violet", color: "white" },
+      '[data-glow="a"]::before': lights(orb(56, 60, 92, 20, "primary", 0.16), orb(50, 50, 0, 80, "secondary", 0.12)),
+      '[data-glow="b"]::before': lights(orb(56, 60, 6, 30, "secondary", 0.15), orb(50, 56, 98, 85, "primary", 0.15)),
+      '[data-glow="c"]::before': lights(orb(64, 70, 50, 0, "primary", 0.18), orb(46, 50, 100, 100, "deep", 0.1)),
+      '[data-glow="agentes"]::before': lights(orb(62, 78, 90, 46, "primary", 0.2), orb(50, 58, 2, 88, "secondary", 0.14)),
+      '[data-glow="agentes-home"]::before': lights(orb(60, 64, 8, 46, "primary", 0.17), orb(52, 56, 98, 90, "secondary", 0.13)),
+      '[data-glow="privacidade"]::before': lights(orb(58, 70, 6, 24, "secondary", 0.13), orb(52, 60, 96, 70, "primary", 0.12)),
+      "::selection": { bg: "brandFrom", color: "onBrand" },
       ":focus-visible": {
         outline: "2px solid",
         outlineColor: "accent",

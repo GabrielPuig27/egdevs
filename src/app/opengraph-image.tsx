@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import { logoGeometry } from "@/components/ui/Logo";
 import { siteConfig } from "@/config/site";
+import { brand } from "@/theme/brand";
 
 export const alt = `${siteConfig.name} — ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
@@ -18,7 +19,7 @@ export default function OpengraphImage() {
           justifyContent: "center",
           padding: "0 96px",
           backgroundColor: "#0B0F1A",
-          backgroundImage: "radial-gradient(circle at 85% 20%, rgba(124,58,237,0.55) 0%, rgba(11,15,26,0) 55%), radial-gradient(circle at 100% 100%, rgba(59,130,246,0.4) 0%, rgba(11,15,26,0) 50%)",
+          backgroundImage: "radial-gradient(circle at 85% 20%, rgba(249,115,22,0.5) 0%, rgba(11,15,26,0) 55%), radial-gradient(circle at 100% 100%, rgba(245,158,11,0.32) 0%, rgba(11,15,26,0) 50%)",
           color: "#F5F7FA",
         }}
       >
@@ -26,9 +27,9 @@ export default function OpengraphImage() {
           <svg width="150" height="112" viewBox={logoGeometry.viewBox}>
             <defs>
               <linearGradient id="e" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="26" y2="53">
-                <stop offset="0" stopColor="#7C3AED" />
-                <stop offset="0.6" stopColor="#3B82F6" />
-                <stop offset="1" stopColor="#0EA5E9" />
+                {brand.logoStops.map((s) => (
+                  <stop key={s.offset} offset={s.offset} stopColor={s.color} />
+                ))}
               </linearGradient>
             </defs>
             <g transform="translate(9.3 0) skewX(-10)">

@@ -38,7 +38,7 @@ export function Hero() {
           </Flex>
           <Heading as="h1" id="hero-titulo" textStyle="display" sx={{ textWrap: "balance" }}>
             Sites, IA e Estratégia para{" "}
-            <Box as="span" bgGradient="linear(to-r, #A78BFA, #60A5FA)" bgClip="text" color="transparent">
+            <Box as="span" bgGradient="linear(to-r, #FB923C, #FBBF24)" bgClip="text" color="transparent">
               negócios reais.
             </Box>
           </Heading>

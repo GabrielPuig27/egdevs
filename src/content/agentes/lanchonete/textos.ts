@@ -59,7 +59,7 @@ export const textosLanchonete = {
     titulo: "A demonstração acabou",
     texto: `Você usou as ${LIMITE_RESPOSTAS} respostas. Quer um atendente assim, com o cardápio e as regras do seu negócio? Fale com a gente.`,
     whatsapp: "Falar pelo WhatsApp",
-    contato: "Falar com a gente",
+    contato: "Fale conosco",
     email: "Enviar e-mail",
     emailAssunto: "Quero um agente de IA para o meu negócio",
   },

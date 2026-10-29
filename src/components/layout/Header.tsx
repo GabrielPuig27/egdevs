@@ -111,7 +111,7 @@ export function Header() {
                     bottom: "-2px",
                     h: "2px",
                     borderRadius: "full",
-                    bgGradient: "linear(to-r, violet, blue)",
+                    bgGradient: "linear(to-r, brandFrom, brandTo)",
                     opacity: on ? 1 : 0,
                     transition: "opacity 0.2s ease",
                   }}
@@ -124,7 +124,7 @@ export function Header() {
 
           <Flex align="center" gap={2}>
             <ActionLink href="/#contato" size="sm" display={{ base: "none", sm: "inline-flex" }}>
-              Falar com a gente
+              Fale conosco
               <Icon name="arrow" size={16} />
             </ActionLink>
             <IconButton
@@ -186,7 +186,7 @@ export function Header() {
                 </Link>
               ))}
               <ActionLink href="/#contato" mt={2} onClick={() => setOpen(false)}>
-                Falar com a gente
+                Fale conosco
                 <Icon name="arrow" size={18} />
               </ActionLink>
             </Box>
