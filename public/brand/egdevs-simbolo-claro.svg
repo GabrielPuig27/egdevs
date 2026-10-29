@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71 53" fill="none">
+  <title>EGdevs (para fundos claros)</title>
+  <defs>
+    <linearGradient id="e" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="26" y2="53">
+      <stop offset="0" stop-color="#7C3AED"/>
+      <stop offset="0.6" stop-color="#3B82F6"/>
+      <stop offset="1" stop-color="#0EA5E9"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(9.3 0) skewX(-10)">
+    <path d="M0 0H26V11H12V21H22V32H12V42H26V53H0Z" fill="url(#e)"/>
+    <path d="M32 0H61V11H43V42H50V36H46V26H61V53H32Z" fill="#0B0F1A"/>
+  </g>
+</svg>
